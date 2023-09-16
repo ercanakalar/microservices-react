@@ -19,7 +19,6 @@ export const currentUser = (
   if (!req.session?.jwt) {
     return next();
   }
-
   try {
     const payload = jwt.verify(
       req.session.jwt,

@@ -1,13 +1,40 @@
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
 
-export default function Deneme() {
+import { useEffect, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import axios from 'axios';
+
+import { useRequest } from './hooks/use-request';
+
+const LandingPage = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [currentuser, setCurrentuser] = useState(null);
+
+  const { doRequest, errors } = useRequest({
+    url: '/api/users/currentuser',
+    method: 'get',
+    body: {},
+    onSuccess: () => router.push('/'),
+  });
+
+  useEffect(() => {
+    setCurrentuser(null);
+    const fetch = async () => {
+      const response = await doRequest();
+
+      setCurrentuser(response.currentUser);
+    };
+    fetch();
+  }, []);
+
+  // ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h2>
-        <Link href='/deneme'>Back to Deneme</Link>
-      </h2>
-      <div>deneme</div>
-    </main>
+    <>
+      {currentuser ? <h1>You are Signed In </h1> : <h1>You are NOT Sign In</h1>}
+    </>
   );
-}
+};
+
+export default LandingPage;

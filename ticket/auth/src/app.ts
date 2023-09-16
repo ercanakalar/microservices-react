@@ -17,9 +17,11 @@ const app: Express = express();
 
 app.set('trust proxy', true);
 app.use(json());
-app.use(cors());
 app.use(
-  cookieSession({ signed: false, secure: process.env.NODE_ENV !== 'test' })
+  cookieSession({
+    signed: false,
+    secure: false,
+  })
 );
 
 app.use(signUpRouter);

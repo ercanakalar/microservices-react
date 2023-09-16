@@ -1,8 +1,8 @@
-FROM node:alpine
+FROM node:latest
 
 WORKDIR /app
 COPY package.json .
-RUN npm install --omit=dev
+RUN npm install --force
 COPY . .
 
 CMD ["npm", "start"]
