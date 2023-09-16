@@ -20,15 +20,13 @@ const Header = () => {
 
   useEffect(() => {
     setUserEmail(null);
-    const currentUser = async () => {
-      const res = await doRequest();
+    const fetch = async () => {
+      const response = await doRequest();
 
-      console.log(res, 'res');
-
-      setUserEmail(res.currentUser);
+      setUserEmail(response.currentUser);
     };
-    currentUser();
-  }, []);
+    fetch();
+  }, [pathname]);
 
   console.log(userEmail, 'userEmail');
 
