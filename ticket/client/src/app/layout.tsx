@@ -1,7 +1,10 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Header from './features/header/header';
+
+import AuthProvider from '@/providers/auth-provider';
+import Header from '@/features/header/header';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -11,14 +14,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  ...props
 }: {
   children: React.ReactNode;
+  props: any;
 }) {
+  const { session }: any = props;
+
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Header />
-        {children}
+        <AuthProvider session={session}>
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

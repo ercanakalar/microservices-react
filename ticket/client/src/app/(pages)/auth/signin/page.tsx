@@ -1,4 +1,4 @@
-import SignIn from '@/app/features/auth/signin';
+import SignIn from '@/features/auth/signin';
 
 const Page = () => {
   return (

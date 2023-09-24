@@ -1,5 +1,5 @@
 {
-  "name": "auth",
+  "name": "ticket",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -17,7 +17,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eactickets/common": "^1.0.6",
     "@types/axios": "^0.14.0",
     "@types/body-parser": "^1.16.3",
     "@types/cookie-session": "^2.0.45",

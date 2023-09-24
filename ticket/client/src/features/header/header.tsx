@@ -2,15 +2,13 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import axios from 'axios';
-import { useRequest } from '@/app/hooks/use-request';
+import { usePathname } from 'next/navigation';
+
+import { useRequest } from '@/hooks/use-request';
 
 const Header = () => {
-  const router = useRouter();
   const pathname = usePathname();
-
-  const [userEmail, setUserEmail] = useState(null);
+  const [currentuser, setCurrentuser] = useState(null);
 
   const { doRequest, errors } = useRequest({
     url: '/api/users/currentuser',
@@ -19,11 +17,13 @@ const Header = () => {
   });
 
   useEffect(() => {
-    setUserEmail(null);
+    setCurrentuser(null);
     const fetch = async () => {
       const response = await doRequest();
 
-      setUserEmail(response.currentUser);
+      console.log(response);
+
+      setCurrentuser(response.currentUser);
     };
     fetch();
   }, [pathname]);
@@ -34,7 +34,7 @@ const Header = () => {
         <Link href='/'>GitTix</Link>
       </div>
       <div className='flex flex-row gap-2'>
-        {!userEmail ? (
+        {!currentuser ? (
           <>
             <div>
               <Link href='/auth/signup'>Sign Up</Link>

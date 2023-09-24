@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export const useRequest = (props: {
-  url: string;
-  method: string;
-  body: { email?: string | undefined; password?: string | undefined };
-  onSuccess?: any;
-}) => {
+import { DoRequestInterface } from './interfaces/do-request-interface';
+
+export const useRequest = (props: DoRequestInterface) => {
   const { url, method, body, onSuccess } = props;
 
   const [errors, setErrors] = useState([]);
@@ -21,6 +18,7 @@ export const useRequest = (props: {
           email: body?.email,
           password: body?.password,
         },
+        withCredentials: true,
       });
 
       if (onSuccess) onSuccess(response.data);

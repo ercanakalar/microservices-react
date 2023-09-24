@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { useRequest } from '@/app/hooks/use-request';
+import { useRequest } from '@/hooks/use-request';
 
 const SignOut = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ const SignOut = () => {
     signout();
   }, []);
 
-  return <div>Signing you out...</div>;
+  return <div>log Out</div>;
 };
 
 export default SignOut;

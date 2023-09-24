@@ -1,4 +1,4 @@
-import SignOut from '@/app/features/auth/signout';
+import SignOut from '@/features/auth/signout';
 
 const Page = () => {
   return (

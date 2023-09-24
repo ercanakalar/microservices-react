@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
-
-import { currentUser, requireAuth } from '../middlewares';
+import { currentUser, requireAuth } from '@eactickets/common/build/middlewares';
 
 const router = express.Router();
 

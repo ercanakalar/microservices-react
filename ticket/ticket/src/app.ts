@@ -1,11 +1,11 @@
 import express, { Express } from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
+import cors from 'cors';
 import cookieSession from 'cookie-session';
 
-import { NotFoundError } from '@eactickets/common/build/errors';
-import { errorHandler } from '@eactickets/common/build/middlewares';
-
+import { errorHandler } from './middlewares';
+import { NotFoundError } from './errors';
 import {
   currentUserRouter,
   singInRouter,
@@ -21,7 +21,6 @@ app.use(
   cookieSession({
     signed: false,
     secure: false,
-    expires: new Date(Date.now() + 60 * 60 * 1000),
   })
 );
 

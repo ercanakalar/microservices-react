@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import axios from 'axios';
 
-import { useRequest } from './hooks/use-request';
+import { useRequest } from '@/hooks/use-request';
 
 const LandingPage = () => {
   const router = useRouter();
