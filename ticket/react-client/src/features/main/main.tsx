@@ -1,16 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useNavigate } from 'react-router-dom';
 
-import { useRequest } from '@/hooks/use-request';
+import { useRequest } from '../../hooks/use-request';
+import Header from '../header/header';
 
 const LandingPage = () => {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const { update, data: session, status } = useSession();
+  const router = useNavigate();
 
   const [currentuser, setCurrentuser] = useState(null);
 
@@ -19,8 +16,7 @@ const LandingPage = () => {
     method: 'get',
     body: {},
     onSuccess: () => {
-      router.push('/');
-      router.refresh();
+      router('/');
     },
   });
 
@@ -29,20 +25,17 @@ const LandingPage = () => {
     const fetch = async () => {
       const response = await doRequest();
 
-      setCurrentuser(response.currentUser);
+      setCurrentuser(response?.currentUser);
     };
 
     fetch();
-  }, [update, router, doRequest]);
+  }, []);
 
   // ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser
   return (
     <>
-      {status === 'authenticated' ? (
-        <h1>You are Signed In </h1>
-      ) : (
-        <h1>You are NOT Sign In</h1>
-      )}
+      <Header />
+      {currentuser ? <h1>You are Signed In </h1> : <h1>You are NOT Sign In</h1>}
     </>
   );
 };

@@ -1,26 +1,24 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
-import { useRequest } from '@/hooks/use-request';
+import { useRequest } from '../../hooks/use-request';
 
 const SignOut = () => {
-  const router = useRouter();
+  const router = useNavigate();
 
   const { doRequest } = useRequest({
     url: '/api/users/signout',
     method: 'post',
     body: {},
-    onSuccess: () => router.push('/'),
+    onSuccess: () => router('/'),
   });
 
   useEffect(() => {
     const signout = async () => {
       await doRequest();
     };
-    router.refresh();
-    router.push('/');
     signout();
   }, [router, doRequest]);
 

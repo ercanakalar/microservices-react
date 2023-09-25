@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { cookies } from 'next/headers';
 
 import AuthProvider from '@/providers/auth-provider';
 import Header from '@/features/header/header';
@@ -14,12 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  ...props
 }: {
   children: React.ReactNode;
-  props: any;
 }) {
-  const { session }: any = props;
+  const cookieStore = cookies();
+  const session = cookieStore.get('12345');
 
   return (
     <html lang='en'>
