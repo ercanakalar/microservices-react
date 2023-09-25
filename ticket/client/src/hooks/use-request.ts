@@ -18,7 +18,6 @@ export const useRequest = (props: DoRequestInterface) => {
           email: body?.email,
           password: body?.password,
         },
-        withCredentials: true,
       });
 
       if (onSuccess) onSuccess(response.data);

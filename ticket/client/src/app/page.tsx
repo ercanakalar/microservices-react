@@ -3,12 +3,16 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { Cookies } from 'react-cookie';
+import nextCookie from 'next-cookies';
 
 import { useRequest } from '@/hooks/use-request';
 
 const LandingPage = () => {
   const router = useRouter();
-  const pathname = usePathname();
+
+  const cookies = new Cookies();
+  console.log(cookies.getAll());
 
   const { update, data: session, status } = useSession();
 
