@@ -21,6 +21,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: client-srv
+                name: client-react-srv
+                port:
+                  number: 3000
+          - path: /api/tickets/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-srv
                 port:
                   number: 3000

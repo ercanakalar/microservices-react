@@ -19,9 +19,16 @@ export const useRequest = (props: DoRequestInterface) => {
           password: body?.password,
         },
         withCredentials: true,
+        headers: {
+          'content-Type': 'application/json',
+          Accept: '/',
+          'Cache-Control': 'no-cache',
+          'Access-Control-Allow-Origin': '*',
+        },
       });
 
       if (onSuccess) onSuccess(response.data);
+
       return response.data;
     } catch (err: any) {
       setErrors(err.response.data.errors);

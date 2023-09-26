@@ -16,8 +16,8 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: ercanakalar/client
-      context: client
+    - image: ercanakalar/client-react
+      context: client-react
       docker:
         dockerfile: Dockerfile
       sync:
