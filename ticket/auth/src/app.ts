@@ -15,12 +15,14 @@ import {
 
 const app: Express = express();
 
+console.log(process.env.NODE_ENV !== 'test', 'process.env.NODE_ENV !== test');
+
 app.set('trust proxy', true);
 app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== 'test',
+    secure: false,
     expires: new Date(Date.now() + 60 * 60 * 1000),
   })
 );

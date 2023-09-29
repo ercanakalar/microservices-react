@@ -20,7 +20,7 @@ const SignOut = () => {
       await doRequest();
     };
     signout();
-  }, [router, doRequest]);
+  }, [router]);
 
   return <div>log Out</div>;
 };
