@@ -11,9 +11,9 @@ function AppRouting() {
     <Routes>
       <Route index element={<LandingPage />} />
 
-      <Route path='auth/signin/*' element={<SignIn />} />
-      <Route path='auth/signup/*' element={<Signup />} />
-      <Route path='auth/signout/*' element={<SignOut />} />
+      <Route path='signin/*' element={<SignIn />} />
+      <Route path='signup/*' element={<Signup />} />
+      <Route path='signout/*' element={<SignOut />} />
     </Routes>
   );
 }

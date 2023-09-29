@@ -22,34 +22,32 @@ const Header = ({ children }: { children: React.ReactNode }) => {
       const response = await doRequest();
       console.log(response, 'response');
 
-      setCurrentuser(response.currentUser);
+      setCurrentuser(response?.currentUser);
     };
     fetch();
   }, [router]);
 
   return (
     <>
-      <div className='flex flex-row justify-between p-3'>
+      <div className='flex flex-row justify-between p-3 bg-gray-500'>
         <div>
-          <Link to='/'>GitTix</Link>
+          <Link to='/' className='text-lg font-bold'>GitTix</Link>
         </div>
-        <div className='flex flex-row gap-2'>
           {!currentuser ? (
-            <>
-              <div>
-                <Link to='/auth/signup'>Sign Up</Link>
-              </div>
-              <div>
-                <Link to='/auth/signin'>Sign In</Link>
-              </div>
-            </>
+            <ul className='flex gap-2'>
+              <li>
+                <Link to='/signup' className='text-lg font-bold'>Sign Up</Link>
+              </li>
+              <li>
+                <Link to='/signin' className='text-lg font-bold'>Sign In</Link>
+              </li>
+            </ul>
           ) : (
             <div>
-              <Link to='/auth/signout'>Sign Out</Link>
+              <Link to='/signout' className='text-lg font-bold'>Sign Out</Link>
             </div>
           )}
         </div>
-      </div>
       {children}
     </>
   );

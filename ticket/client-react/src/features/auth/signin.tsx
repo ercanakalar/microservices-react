@@ -4,12 +4,15 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useRequest } from '../../hooks/use-request';
-import Input from '../../components/input/input';
+import FormInput from '../../components/input/form-input';
+import SubmitButton from '../../components/button/submit-button';
 
 const SignIn = () => {
   const router = useNavigate();
 
   const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
@@ -34,29 +37,54 @@ const SignIn = () => {
   };
 
   return (
-    <form className='flex flex-col ' onSubmit={(event) => onSubmit(event)}>
-      <h1>Sign In</h1>
-      <div className='flex flex-col w-full '>
-        <label htmlFor='email'>Email Address</label>
-        <Input
-          id='email'
-          type='email'
-          className='border-2 border-gray-300 outline-none'
-          placeholder='Enter email'
-          onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
-          value={user.email}
-        />
+    <form
+      className='flex flex-col md:px-24 px-6 gap-6'
+      onSubmit={(event) => onSubmit(event)}
+    >
+      <div>
+        <h1 className='flex justify-center text-2xl font-extrabold p-6'>
+          Sign In
+        </h1>
       </div>
-      <div className='flex flex-col'>
-        <label htmlFor='password'>Password</label>
-        <Input
-          type='password'
-          className='border-2 border-gray-300 outline-none'
-          id='password'
-          placeholder='Enter email'
-          onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
-          value={user.password}
-        />
+      <div className='inline-grid gap-16'>
+        <div className='flex justify-center gap-4'>
+          <div className='flex flex-col w-full'>
+            <FormInput
+              id='firstName'
+              type='text'
+              placeholder='First Name'
+              onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
+              value={user.firstName}
+            />
+          </div>
+          <div className='flex flex-col w-full'>
+            <FormInput
+              id='lastName'
+              type='text'
+              placeholder='Last Name'
+              onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
+              value={user.lastName}
+            />
+          </div>
+        </div>
+        <div className='flex justify-center w-full'>
+          <FormInput
+            id='email'
+            type='email'
+            placeholder='Enter Email'
+            onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
+            value={user.email}
+          />
+        </div>
+        <div className='flex justify-center'>
+          <FormInput
+            type='password'
+            id='password'
+            placeholder='Enter Password'
+            onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
+            value={user.password}
+          />
+        </div>
       </div>
       <div>
         <ul>
@@ -66,10 +94,10 @@ const SignIn = () => {
             ))}
         </ul>
       </div>
-      <div className=''>
-        <button type='submit' className=''>
-          Submit
-        </button>
+      <div className='flex justify-end'>
+        <SubmitButton type='submit'>
+          <p className='text-white font-semibold w-'>Submit</p>
+        </SubmitButton>
       </div>
     </form>
   );

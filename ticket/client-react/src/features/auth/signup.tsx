@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useRequest } from '../../hooks/use-request';
-import Input from '../../components/input/input';
+import FormInput from '../../components/input/form-input';
 
 const Signup = () => {
   const router = useNavigate();
@@ -36,7 +36,7 @@ const Signup = () => {
       <h1>Sign Up</h1>
       <div className='flex flex-col w-full '>
         <label htmlFor='email'>Email Address</label>
-        <Input
+        <FormInput
           id='email'
           type='email'
           className='border-2 border-gray-300 outline-none'
@@ -47,7 +47,7 @@ const Signup = () => {
       </div>
       <div className='flex flex-col'>
         <label htmlFor='password'>Password</label>
-        <Input
+        <FormInput
           type='password'
           className='border-2 border-gray-300 outline-none'
           id='password'
