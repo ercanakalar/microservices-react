@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eactickets/common": "^1.0.10",
+    "@eactickets/common": "^1.0.12",
     "@types/body-parser": "^1.16.3",
     "@types/cookie-session": "^2.0.45",
     "@types/jsonwebtoken": "^9.0.2",
