@@ -11,8 +11,6 @@ const SignIn = () => {
   const router = useNavigate();
 
   const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
     email: '',
     password: '',
   });
@@ -47,26 +45,6 @@ const SignIn = () => {
         </h1>
       </div>
       <div className='inline-grid gap-16'>
-        <div className='flex justify-center gap-4'>
-          <div className='flex flex-col w-full'>
-            <FormInput
-              id='firstName'
-              type='text'
-              placeholder='First Name'
-              onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
-              value={user.firstName}
-            />
-          </div>
-          <div className='flex flex-col w-full'>
-            <FormInput
-              id='lastName'
-              type='text'
-              placeholder='Last Name'
-              onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
-              value={user.lastName}
-            />
-          </div>
-        </div>
         <div className='flex justify-center w-full'>
           <FormInput
             id='email'

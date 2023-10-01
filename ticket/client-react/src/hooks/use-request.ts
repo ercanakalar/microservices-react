@@ -15,6 +15,8 @@ export const useRequest = (props: DoRequestInterface) => {
       const response = await axios(url, {
         method,
         data: {
+          firstName: body?.firstName ?? '',
+          lastName: body?.lastName ?? '',
           email: body?.email,
           password: body?.password,
         },

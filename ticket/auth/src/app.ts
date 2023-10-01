@@ -15,8 +15,6 @@ import {
 
 const app: Express = express();
 
-console.log(process.env.NODE_ENV !== 'test', 'process.env.NODE_ENV !== test');
-
 app.set('trust proxy', true);
 app.use(json());
 app.use(
