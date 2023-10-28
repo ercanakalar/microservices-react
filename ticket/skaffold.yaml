@@ -16,14 +16,6 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: ercanakalar/client-react
-      context: client-react
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: '**/*.tsx'
-            dest: .
     - image: ercanakalar/tickets
       context: tickets
       docker:
@@ -31,4 +23,20 @@ build:
       sync:
         manual:
           - src: 'src/**/*.ts'
+            dest: .
+    - image: ercanakalar/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: ercanakalar/client-react
+      context: client-react
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.tsx'
             dest: .

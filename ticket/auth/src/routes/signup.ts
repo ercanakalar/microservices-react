@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt, { Jwt } from 'jsonwebtoken';
-import { BadRequestError } from '@eactickets/common/build/errors';
-import { validateRequest } from '@eactickets/common/build/middlewares';
+import { BadRequestError,validateRequest } from '@eactickets/common';
 
 import { User } from '../models/user-model';
 
@@ -11,8 +10,6 @@ const router = express.Router();
 router.post(
   '/api/users/signup',
   [
-    body('firstName').notEmpty().withMessage('First name is required'),
-    body('lastName').notEmpty().withMessage('Last name is required'),
     body('email').isEmail().withMessage('Email must be valid'),
     body('password')
       .trim()
@@ -21,7 +18,7 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
 
@@ -29,16 +26,12 @@ router.post(
       throw new BadRequestError('Email in use');
     }
 
-    const newUser = User.build({ firstName, lastName, email, password });
+    const newUser = User.build({  email, password });
     await newUser.save();
-
-    console.log(newUser, 'newUser');
 
     const userJwt: Jwt | string = jwt.sign(
       {
         id: newUser.id,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
         email: newUser.email,
       },
       process.env.JWT_KEY!

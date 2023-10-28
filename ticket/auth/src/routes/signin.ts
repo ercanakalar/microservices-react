@@ -1,11 +1,10 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt, { Jwt } from 'jsonwebtoken';
+import { BadRequestError,validateRequest } from '@eactickets/common';
 
 import { User } from '../models/user-model';
 import { PasswordManager } from '../services';
-import { BadRequestError } from '@eactickets/common/build/errors';
-import { validateRequest } from '@eactickets/common/build/middlewares';
 
 const router = express.Router();
 
@@ -40,8 +39,6 @@ router.post(
     const userJwt: Jwt | string = jwt.sign(
       {
         id: existingUser.id,
-        firstName: existingUser.firstName,
-        lastName: existingUser.lastName,
         email: existingUser.email,
       },
       process.env.JWT_KEY!

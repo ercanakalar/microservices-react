@@ -13,6 +13,7 @@ class NatsWrapper {
 
   connect(clusterId: string, clientId: string, url: string) {
     this._client = nats.connect(clusterId, clientId, { url });
+    console.log('url', url);
 
     return new Promise<void>((resolve, reject) => {
       this.client.on('connect', () => {
@@ -20,6 +21,7 @@ class NatsWrapper {
         resolve();
       });
       this.client.on('error', (err) => {
+        console.log('Errorr*-------😒😒😒😒', err);
         reject(err);
       });
     });

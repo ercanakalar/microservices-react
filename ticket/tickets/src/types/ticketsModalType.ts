@@ -10,8 +10,10 @@ export interface TicketDoc extends mongoose.Document {
   title: string;
   price: number;
   userId: string;
+  version: number;
+  orderId?: string;
 }
 
-export interface TicketModal extends mongoose.Model<TicketDoc> {
+export interface TicketModel extends mongoose.Model<TicketDoc> {
   build(attrs: TicketAttrs): TicketDoc;
 }

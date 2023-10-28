@@ -3,11 +3,9 @@ import { body } from 'express-validator';
 import {
   requireAuth,
   validateRequest,
-} from '@eactickets/common/build/middlewares';
-import {
   NotAuthorizedError,
   NotFoundError,
-} from '@eactickets/common/build/errors';
+} from '@eactickets/common';
 
 import { Ticket } from '../models/ticket-modal';
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
@@ -47,6 +45,7 @@ router.put(
       id: ticket.id,
       title: ticket.title,
       price: ticket.price,
+      version: ticket.version,
       userId: ticket.userId,
     });
 

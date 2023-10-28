@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
 export interface UserAttrs {
-  firstName: string;
-  lastName: string;
   email: string;
   password: string;
 }
@@ -12,8 +10,6 @@ export interface UserModal extends mongoose.Model<UserDoc> {
 }
 
 export interface UserDoc extends mongoose.Document {
-  firstName: string;
-  lastName: string;
   email: string;
   password: string;
 }

@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eactickets/common": "^1.0.12",
+    "@eactickets/common": "^1.0.17",
     "@types/body-parser": "^1.16.3",
     "@types/cookie-session": "^2.0.45",
     "@types/jsonwebtoken": "^9.0.2",
@@ -29,6 +29,7 @@
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.0",
+    "mongoose-update-if-current": "^1.4.0",
     "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
@@ -46,3 +47,4 @@
     "typescript": "^5.1.6"
   }
 }
+ 

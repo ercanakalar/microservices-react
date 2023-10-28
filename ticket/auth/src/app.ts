@@ -3,8 +3,8 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 
-import { NotFoundError } from '@eactickets/common/build/errors';
-import { errorHandler } from '@eactickets/common/build/middlewares';
+import { NotFoundError } from '@eactickets/common';
+import { errorHandler } from '@eactickets/common';
 
 import {
   currentUserRouter,

@@ -1,9 +1,5 @@
-import {
-  Publisher,
-  Subjects,
-  TicketCreatedEvent,
-} from '@eactickets/common/build/events';
+import { Publisher, Subjects, TicketCreatedEvent } from '@eactickets/common';
 
 export class TicketCreatedPublisher extends Publisher<TicketCreatedEvent> {
-  readonly subject = Subjects.TicketCreated;
+  subject: Subjects.TicketCreated = Subjects.TicketCreated;
 }

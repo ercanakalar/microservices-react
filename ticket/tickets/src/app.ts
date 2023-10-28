@@ -2,11 +2,7 @@ import express, { Express } from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
-import {
-  currentUser,
-  errorHandler,
-} from '@eactickets/common/build/middlewares';
-import { NotFoundError } from '@eactickets/common/build/errors';
+import { currentUser, errorHandler, NotFoundError } from '@eactickets/common';
 
 import {
   createTicketRouter,
@@ -22,10 +18,9 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: false,
+    secure: process.env.NODE_ENV !== 'test',
   })
 );
-
 app.use(currentUser);
 
 app.use(createTicketRouter);
@@ -36,6 +31,6 @@ app.use(updateTicketRouter);
 app.all('*', async () => {
   throw new NotFoundError();
 });
-app.use(errorHandler);
+app.use(errorHandler);  
 
 export { app };

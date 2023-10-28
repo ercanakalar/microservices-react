@@ -6,14 +6,6 @@ import { UserAttrs, UserModal, UserDoc } from '../types/userModalType';
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: false,
-    },
     email: {
       type: String,
       required: true,

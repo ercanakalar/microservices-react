@@ -1,13 +1,10 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import {
-  requireAuth,
-  validateRequest,
-} from '@eactickets/common/build/middlewares';
 
-import { Ticket } from '../models/ticket-modal';
+import { requireAuth, validateRequest } from '@eactickets/common';
 import { TicketCreatedPublisher } from '../events/publishers/ticket-created-publisher';
 import { natsWrapper } from '../nats-wrapper';
+import { Ticket } from '../models/ticket-modal';
 
 const router = express.Router();
 
@@ -23,19 +20,22 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { title, price } = req.body;
+    console.log('req.body', req.body);
 
     const ticket = Ticket.build({
       title,
       price,
       userId: req.currentUser!.id,
     });
-
+    console.log(ticket);
+    
     await ticket.save();
-    await new TicketCreatedPublisher(natsWrapper.client).publish({
+    new TicketCreatedPublisher(natsWrapper.client).publish({
       id: ticket.id,
       title: ticket.title,
       price: ticket.price,
       userId: ticket.userId,
+      version: ticket.version,
     });
 
     res.status(201).send(ticket);

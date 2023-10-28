@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { NotFoundError } from '@eactickets/common/build/errors';
+import { NotFoundError } from '@eactickets/common';
 
 import { Ticket } from '../models/ticket-modal';
 
