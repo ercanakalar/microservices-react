@@ -5,6 +5,7 @@ import {
   validateRequest,
   NotAuthorizedError,
   NotFoundError,
+  BadRequestError,
 } from '@eactickets/common';
 
 import { Ticket } from '../models/ticket-modal';
@@ -30,6 +31,10 @@ router.put(
       throw new NotFoundError();
     }
 
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit a reserved ticket');
+    }
+
     if (ticket.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();
     }
@@ -38,15 +43,13 @@ router.put(
       title: req.body.title,
       price: req.body.price,
     });
-
     await ticket.save();
-
     new TicketUpdatedPublisher(natsWrapper.client).publish({
       id: ticket.id,
       title: ticket.title,
       price: ticket.price,
-      version: ticket.version,
       userId: ticket.userId,
+      version: ticket.version,
     });
 
     res.send(ticket);
